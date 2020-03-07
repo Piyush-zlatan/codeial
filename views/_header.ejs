@@ -1,9 +1,23 @@
-<html>
-    <head>
-    </head>
-    <body>
-        <h3>
+<header>
             This is header
-        </h3>
-    </body>
-</html>
+
+            <% if(locals.user){%>
+                <li>
+                    <a href="/users/profile">
+                        <%= user.name %>
+                    </a>
+                </li>
+                <li>
+                    <a href="/users/sign-out">Sign out</a>
+                </li>
+                <%}else{%>
+
+                    <li>
+                        <a href="/users/sign-in">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="/users/sign-up">Sign up</a>
+                    </li>
+
+                    <%}%>
+        </header>
