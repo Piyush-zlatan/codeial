@@ -7,4 +7,6 @@ const postController = require('../controllers/posts_controller');
 //here passport.checkAuthentication this will check if user is signed in or not..if not it won't reach to action in controller
 router.post('/create',passport.checkAuthentication,postController.create);
 
+router.get('/destroy/:id',passport.checkAuthentication,postController.destroy);
+
 module.exports = router;
