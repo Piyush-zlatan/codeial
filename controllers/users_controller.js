@@ -1,5 +1,7 @@
 const User = require('../models/user');
 
+
+// No need of async as there is no nesting level
 module.exports.profile = function(req,res){
    
     User.findById(req.params.id,function(err,user){
@@ -8,8 +10,6 @@ module.exports.profile = function(req,res){
             profile_user: user
         });
     });
-   
-   
 }
 
 module.exports.update = function(req,res){
