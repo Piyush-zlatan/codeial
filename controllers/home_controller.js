@@ -1,39 +1,50 @@
 const Post = require('../models/post');
 const User = require('../models/user');
-module.exports.home = function(req,res){
-     //   return res.end('<h1>Express is up for codeial</h1>');
-       // console.log(req.cookies);
+module.exports.home = async function (req, res) {
+        //   return res.end('<h1>Express is up for codeial</h1>');
+        // console.log(req.cookies);
 
-//        Post.find({}, function(err,posts){
-//         return res.render('home',{
-//                 title: 'Home',
-//                 posts: posts
-//            });
+        //        Post.find({}, function(err,posts){
+        //         return res.render('home',{
+        //                 title: 'Home',
+        //                 posts: posts
+        //            });
 
-//        });
+        //        });
 
-       //populate the user of each post
-       Post.find({})
-       .populate('user')
-       .populate({
-               path:'comments',
-               populate:{
-                       path:'User'
-               }
-       })
-       .exec(function(err,posts){
+        try {
 
-        User.find({},function(err,users){
-                return res.render('home',{
+                //populate the user of each post
+                let posts = await Post.find({})           //The succussful response will be stored in the post of find query
+                        .populate('user')
+                        .populate({
+                                path: 'comments',
+                                populate: {
+                                        path: 'User'
+                                }
+                        });
+
+                let users = await User.find({});
+
+                return res.render('home', {
                         title: 'Home',
                         posts: posts,
                         all_users: users
-                   });
-        })
+                });
 
-       
-   });
-        
+        } catch (err) {
+                console.log('Error:',err);
+                return;
+        }
+
 }
+
+//        .exec(function(err,posts){
+
+
+
+//    });
+
+
 
 //module.exports.actionName  = function(req,res)
