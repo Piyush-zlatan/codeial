@@ -1,5 +1,6 @@
 const User = require('../models/user');
-
+const fs = require('fs');
+const path= require('path');
 
 // No need of async as there is no nesting level
 module.exports.profile = function(req,res){
