@@ -13,6 +13,7 @@ passport.use(new googleStartegy({
     callbackURL: "http://localhost:8000/users/auth/google/callback",
     },
     function(accessToken,refreshToken,profile,done){
+        // find a user  
         User.findOne({email:profile.emails[0].value}).exec(function(err,user){
             if(err){
                 console.log('error in google startegy passport',err);
@@ -21,8 +22,10 @@ passport.use(new googleStartegy({
             console.log(profile);
 
             if(user){
+                //if found then set this user as request.user
                 return done(null,user);
             }else{
+                //if not found then create the user and set it as request.user
                 User.create({
                     name: profile.displayName,
                     email: profile.emails[0].value,

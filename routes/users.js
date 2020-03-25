@@ -6,20 +6,24 @@ const passport = require('passport');
 
 const usersControllers = require('../controllers/users_controller');
 
-router.get('/profile/:id',passport.checkAuthentication,usersControllers.profile);
-router.post('/update/:id',passport.checkAuthentication,usersControllers.update);
+router.get('/profile/:id', passport.checkAuthentication, usersControllers.profile);
+router.post('/update/:id', passport.checkAuthentication, usersControllers.update);
 
-router.get('/sign-up',usersControllers.signUp);
-router.get('/sign-in',usersControllers.signIn);
+router.get('/sign-up', usersControllers.signUp);
+router.get('/sign-in', usersControllers.signIn);
 
-router.post('/create',usersControllers.create);// router.post can take 3 arguements..the third one is middleware
+router.post('/create', usersControllers.create);// router.post can take 3 arguements..the third one is middleware
 
 //use passportas a middleware to authenticate
-router.post('/create-session',passport.authenticate(
+router.post('/create-session', passport.authenticate(
     'local',
-    {failureRedirect:'/users/sign-in'},
-),usersControllers.createSession)
+    { failureRedirect: '/users/sign-in' },
+), usersControllers.createSession)
 
-router.get('/sign-out',usersControllers.destroySession);
+router.get('/sign-out', usersControllers.destroySession);
+
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/sign-in' }), usersControllers.createSession);
+
 
 module.exports = router;
