@@ -12,11 +12,11 @@ const path = require('path');
 let transpoter = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
-    port: '587',
+    port: 587,
     secure: false,
     auth: {
-        user: 'pia.axelor',
-        password: 'bhulgaya951'
+        user: 'pia.axelor@gmail.com',
+        pass: 'bhulgaya951'
     }
 });
 
