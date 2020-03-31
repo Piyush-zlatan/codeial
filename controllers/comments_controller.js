@@ -1,6 +1,8 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const queue = require('../config/kue');
 const commentsMailer = require('../mailers/comments_mailer');
+const commentEmailWorker  = require('../workers/comment_email_worker');
 
 module.exports.create = async function (req, res) {
     try {
@@ -17,8 +19,13 @@ module.exports.create = async function (req, res) {
 
             comment = await comment.populate('user', 'name email').execPopulate();
             console.log(comment);
-            commentsMailer.newComment(comment);
-
+            
+            // This is the line whose operation that needs to put into the queue for paraller job.
+           // commentsMailer.newComment(comment);
+            let job =  queue.create('emails',comment).save(function(err){
+                if(err){console.log('Error in creating a queue'); return;}
+                console.log(job.id);
+            })
             if (req.xhr) {
                 //Similar to comment to fetch the user's id
                
