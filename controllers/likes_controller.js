@@ -1,5 +1,5 @@
 const Like = require('../models/like');
-const comment = require('../models/comment');
+const Comment = require('../models/comment');
 const Post = require('../models/post');
 
 
@@ -40,7 +40,7 @@ module.exports.toggleLike = async function(req,res){
                 onModel: req.query.type
             });
 
-            likeable.likes.push(like._id);
+            likeable.likes.push(newLike._id);
             likeable.save();
         }
 
