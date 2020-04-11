@@ -1,6 +1,7 @@
 const express = require('express');
 const env = require('./config/environment');
 const morgan = require('morgan');
+const logger=require('logger');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = 8000;
@@ -41,7 +42,7 @@ app.use(express.static(env.assest_path));
 // make the uploads path available to the browser
 app.use('/uploads',express.static(__dirname+'/uploads'));
 
-//app.use(logger(env.morgan.mode,env.morgan.options));
+app.use(logger(env.morgan.mode,env.morgan.options));
 app.use(expressLayouts);
 //extract styles and scripts  from sub pages into the layouts
 app.set('layout extractStyles',true);
