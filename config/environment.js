@@ -1,3 +1,15 @@
+const fs = require('fs');
+const rfs = require('rotating-file-stream');
+const path = require('path');
+
+//creating log directory
+const logDirectory = path.join(__dirname,'../production_logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+const accessLogStream = rfs.createStream('access.log',{
+    interval:'1d',
+    path: logDirectory
+});
 
 const development= {
     name :'development',
@@ -17,7 +29,11 @@ const development= {
     google_client_id: "58330172222-emd1rds9k7r58bsinjqn51spghf3l2hm.apps.googleusercontent.com",
     google_client_secret: "wzx6q4u9ZcSfe-4J89dOFIVL",
     google_call_back_url: "http://localhost:8000/users/auth/google/callback",
-    jwt_secret : 'codeial'
+    jwt_secret : 'codeial',
+    morgan:{
+        mode:'dev',
+        options:{stream:accessLogStream}
+    }
 }
 
 // make a file for environment variable and put the keys into that then access them like process.variablename
@@ -39,7 +55,11 @@ const production={
     google_client_id: "58330172222-emd1rds9k7r58bsinjqn51spghf3l2hm.apps.googleusercontent.com",
     google_client_secret: "wzx6q4u9ZcSfe-4J89dOFIVL",
     google_call_back_url: "http://codeial.com/users/auth/google/callback",
-    jwt_secret : '^If7|SyJhuzd;ZZmX'
+    jwt_secret : '^If7|SyJhuzd;ZZmX',
+    morgan:{
+        mode:'combined',
+        options:{stream:accessLogStream}
+    }
 }
 
 module.exports = development;
