@@ -2,15 +2,15 @@ const passport = require('passport');
 const googleStartegy = require('passport-google-oauth').OAuth2Strategy;
 const crypto = require('crypto');
 const User = require('../models/user');
-
+const env = require('./environment');
 
 //Tell  Passport to use google startegy
 
 passport.use(new googleStartegy({
 
-    clientID: "58330172222-emd1rds9k7r58bsinjqn51spghf3l2hm.apps.googleusercontent.com",
-    clientSecret: "wzx6q4u9ZcSfe-4J89dOFIVL",
-    callbackURL: "http://localhost:8000/users/auth/google/callback",
+    clientID: env.google_client_id,
+    clientSecret: env.google_client_secret,
+    callbackURL: env.google_call_back_url,
     },
     function(accessToken,refreshToken,profile,done){
         // find a user  
