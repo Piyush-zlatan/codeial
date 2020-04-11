@@ -1,0 +1,15 @@
+[0mGET / [36m304[0m 129.420 ms - -[0m
+[0mGET /js/home_post_comments.js [33m404[0m 38.918 ms - 163[0m
+[0mGET /js/home_post_comments.js [33m404[0m 6.994 ms - 163[0m
+[0mGET / [32m200[0m 120.607 ms - 6516[0m
+[0mGET /assetPath('css/layout.css') [33m404[0m 8.109 ms - 174[0m
+[0mGET /js/home_post_comments.js [33m404[0m 19.153 ms - 163[0m
+[0mGET /assetPath('css/layout.css') [33m404[0m 3.848 ms - 174[0m
+[0mGET /js/home_post_comments.js [33m404[0m 3.041 ms - 163[0m
+[0mGET /assetPath('css/layout.css') [33m404[0m 5.732 ms - 174[0m
+[0mGET / [36m304[0m 127.923 ms - -[0m
+[0mGET /assetPath('css/layout.css') [33m404[0m 29.075 ms - 174[0m
+[0mGET /js/home_post_comments.js [33m404[0m 19.084 ms - 163[0m
+[0mGET / [36m304[0m 139.955 ms - -[0m
+[0mGET /assetPath('css/layout.css') [33m404[0m 24.114 ms - 174[0m
+[0mGET /js/home_post_comments.js [33m404[0m 60.019 ms - 163[0m

@@ -1,9 +1,9 @@
 const express = require('express');
 const env = require('./config/environment');
-const morgan = require('morgan');
-const logger=require('logger');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app = express();
+require('./config/view-helpers')(app);
 const port = 8000;
 const expressLayouts  = require('express-ejs-layouts');     //to use layout concept
 const db = require('./config/mongoose');
