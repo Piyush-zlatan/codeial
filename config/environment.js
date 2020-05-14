@@ -23,11 +23,11 @@ const development= {
         secure: false,
         auth: {
             user: 'pia.axelor@gmail.com',
-            pass: 'bhulgaya951'
+            pass: 'password'
         }
     },
-    google_client_id: "58330172222-emd1rds9k7r58bsinjqn51spghf3l2hm.apps.googleusercontent.com",
-    google_client_secret: "wzx6q4u9ZcSfe-4J89dOFIVL",
+    google_client_id: "google_API_ID",
+    google_client_secret: "google_API_SECRET",
     google_call_back_url: "http://localhost:8000/users/auth/google/callback",
     jwt_secret : 'codeial',
     morgan:{
